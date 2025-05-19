@@ -33,3 +33,24 @@ This project demonstrates how to implement **secure socket communication** using
 
 ## 📁 Project Structure
 
+
+
+---
+
+## 🔧 Setup Instructions
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/your-username/secure-channel.git
+cd secure-channel
+
+
+python3 -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+
+pip install pycryptodome
+
+
+python server.py
