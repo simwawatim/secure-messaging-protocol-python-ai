@@ -2,28 +2,34 @@
 
 ## 📌 What Happened Before
 
-Initially, a basic client-server Python socket communication setup was created, where messages were sent in plaintext. However, this approach was insecure — anyone intercepting the messages over the network could read the contents.
+Initially, a basic client-server Python socket communication setup was created where messages were sent in **plaintext**. However, this approach was **insecure** — any attacker intercepting the messages over the network could easily read them.
 
-To address this, **AES-GCM encryption** was introduced to secure the communication. The client now encrypts messages before sending them, and the server decrypts them using a shared secret key.
+To fix this, **AES-GCM encryption** was added to secure the communication. The client now encrypts each message before sending, and the server decrypts the message using a shared secret key.
 
 ---
 
 ## 🚀 Project Overview
 
-This project demonstrates how to implement **secure socket communication** using **AES-256-GCM** in Python. Messages sent from the client are encrypted before transmission and decrypted by the server upon receipt.
+This project demonstrates how to implement **secure socket communication** using **AES-256-GCM** encryption in Python.
 
-
-![Scre![Screenshot from 2025-05-19 09-54-59](https://github.com/user-attachments/assets/7660c879-48be-4e93-852c-152c4ede5747)
-enshot from 2025-05-19 09-54-45](https://github.com/user-attachments/assets/163d95db-69e8-4d41-b9ae-c885a27f83c5)
+- 🔐 **Client** encrypts messages using AES-GCM before sending.
+- 🛡️ **Server** decrypts incoming messages using the same key.
+- ✅ Communication is now encrypted and more secure.
 
 ---
-![Screenshot from 2025-05-19 09-54-45](https://github.com/user-attachments/assets/421e90ff-9e69-46e2-a32e-724646592e27)
 
-![Screenshot from 2025-05-19 09-55-27](https://github.com/user-attachments/assets/de6cb290-0383-4faf-b62f-6ba1a4ecdaaf)
+## 🖼️ Screenshots
 
-![Screenshot from 2025-05-19 09-55-46](https://github.com/user-attachments/assets/63d56d0a-9158-4a6f-8cba-f967c63e66d4)
+> Below are some screenshots of the working system:
 
+![Screenshot 1](https://github.com/user-attachments/assets/7660c879-48be-4e93-852c-152c4ede5747)
+![Screenshot 2](https://github.com/user-attachments/assets/163d95db-69e8-4d41-b9ae-c885a27f83c5)
+![Screenshot 3](https://github.com/user-attachments/assets/421e90ff-9e69-46e2-a32e-724646592e27)
+![Screenshot 4](https://github.com/user-attachments/assets/de6cb290-0383-4faf-b62f-6ba1a4ecdaaf)
+![Screenshot 5](https://github.com/user-attachments/assets/63d56d0a-9158-4a6f-8cba-f967c63e66d4)
+![Screenshot 6](https://github.com/user-attachments/assets/bf27c652-d1b4-4331-b761-1c11e6638cd2)
 
-![Screenshot from 2025-05-19 10-37-56](https://github.com/user-attachments/assets/bf27c652-d1b4-4331-b761-1c11e6638cd2)
+---
 
+## 📁 Project Structure
 
