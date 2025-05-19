@@ -9,7 +9,7 @@ def server_program():
 
     #bind the socket 
     server_socket = socket.socket()
-    server_socket.bind(host, port)
+    server_socket.bind((host, port))
 
     #configure the server
     server_socket.listen(2)
