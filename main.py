@@ -1,38 +1,41 @@
 import socket
+import json
+from encryption import decrypt_aes_gcm
 
+# Use a shared key (should be securely exchanged in real applications)
+key = b'Sixteen byte key for AES256--must be 32bytes!'[:32]
 
 def server_program():
-
-    # get the host
     host = socket.gethostname()
-    port = 5000
+    port = 6000
 
-    #bind the socket 
     server_socket = socket.socket()
     server_socket.bind((host, port))
 
-    #configure the server
     server_socket.listen(2)
+    print(f"Server listening on {host}:{port}...")
+
     conn, address = server_socket.accept()
-    print("Connection from: " + str(address))
+    print("Connection from:", str(address))
+
     while True:
-
-        #receive data
-        data = conn.recv(1024).decode()
-
-        #close socket if data is not recieved
+        data = conn.recv(4096).decode()
         if not data:
             break
-        
-        print("Connection fro user: " + str(data))
-        data = input(' -> ')
 
-        #send data to client
-        conn.send(data.encode())
+        try:
+            encrypted_data = json.loads(data)
+            decrypted_message = decrypt_aes_gcm(encrypted_data, key)
+            print("Decrypted from client:", decrypted_message)
+        except Exception as e:
+            print("Error decrypting message:", e)
+            break
 
-    #close the connection
+        # Send response
+        response = input(" -> ")
+        conn.send(response.encode())
+
     conn.close()
-    
+
 if __name__ == "__main__":
     server_program()
-

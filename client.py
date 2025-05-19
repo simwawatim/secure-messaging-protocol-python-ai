@@ -1,33 +1,30 @@
 import socket
+import json
+from encryption import encrypt_aes_gcm
 
+# Use the same key as server (for testing)
+key = b'Sixteen byte key for AES256--must be 32bytes!'[:32]
 
 def client_program():
-    #get the host name
     host = socket.gethostname()
-    port = 5000
-
-    #make connection
+    port = 6000
 
     client_socket = socket.socket()
     client_socket.connect((host, port))
 
     message = input(" -> ")
 
-    while message.lower().split() != 'bye':
-        #send the message
-        client_socket.send(message.encode())
+    while message.lower() != 'bye':
+        encrypted_data = encrypt_aes_gcm(message, key)
+        json_message = json.dumps(encrypted_data)
+        client_socket.send(json_message.encode())
 
-        #recieve the message
-        data = client_socket.recv(1023).decode()
+        # Receive plain text response
+        data = client_socket.recv(4096).decode()
+        print("Server says:", data)
 
-        #display the message
-
-        print("Recieved message from: " + data)
-
-        #show prompt again
         message = input(" -> ")
 
-    #close the socket
     client_socket.close()
 
 if __name__ == '__main__':
